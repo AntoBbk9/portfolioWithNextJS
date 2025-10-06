@@ -1,15 +1,17 @@
+"use client";
+
 import axios from "axios";
 import Projets from "@/components/projets";
+import { useEffect, useState } from "react";
 
-async function getProjects() {
-  const res = await axios.get("http://localhost:3000/api/projects");
-  const data = res.data;
-  return data.filter((p: any) => p.type === "developpement");
-}
+export default function ProjetDeveloppement() {
+  const [projets, setProjets] = useState<any[]>([]);
 
-export default async function ProjetDeveloppement() {
-  const projets = await getProjects();
-
+  useEffect(() => {
+    axios.get("/api/projects").then((res) => {
+      setProjets(res.data.filter((p: any) => p.type === "developpement"));
+    });
+  }, []);
   return (
     <div className="pt-10 space-y-8">
       {projets.map((projet: any) => (

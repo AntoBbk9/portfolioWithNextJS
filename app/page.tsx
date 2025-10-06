@@ -17,7 +17,7 @@ function Home() {
   useEffect(() => {
     async function fetchProjects() {
       try {
-        const res = await axios.get("http://localhost:3000/api/projects");
+        const res = await axios.get("/api/projects");
         setProjets(res.data.filter((p: any) => p.type === "developpement"));
       } catch (err) {
         console.error(err);
