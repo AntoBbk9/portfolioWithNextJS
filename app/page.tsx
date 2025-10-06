@@ -1,103 +1,125 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { useRef } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import Button from "@/components/buttons/button";
+import ContactForm from "@/components/contactForm";
+import Projets from "@/components/projets";
+import axios from "axios";
+
+async function getProjects() {
+  const res = await axios.get("http://localhost:3000/api/projects");
+  const data = res.data;
+  return data.filter((p: any) => p.type === "developpement");
+}
+async function Home() {
+  const contactRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+    const projets = await getProjects();
+
+  const scrollToContact = () => {
+    if (contactRef.current) {
+      contactRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+    <div>
+      <div className="w-full flex justify-center items-center flex-col">
+        <div className="flex flex-col md:flex-row w-full md:w-[80%] md:justify-between items-center md:m-8">
+          <div className="md:w-[30rem] xl:w-[34rem]">
+            <div>
+              <p className="font-sans font-bold text-3xl">Bonjour, Je suis</p>
+              <p className="font-sans font-bold text-3xl pt-2">
+                Antoinette Belebele.
+              </p>
+              <p className="font-paragraph font-extralight text-xs leading-loose pt-2">
+                Développeuse web fullstack et web designer passionnée par la
+                création de solutions innovantes et adaptées aux besoins des
+                utilisateurs. Avec un œil attentif aux détails et un souci
+                constant de la performance, je conçois des applications qui
+                allient esthétisme et fonctionnalité pour offrir une expérience
+                utilisateur optimale.
+              </p>
+            </div>
+            <div className="flex gap-4 pt-6">
+              <Button text="Contactez Moi" onClick={scrollToContact} />
+              <div className="w-10 h-10 rounded-full bg-grayColor flex items-center justify-center">
+                <a href="https://www.linkedin.com/in/antoinette-belebele-443943260/">
+                  <FaLinkedinIn className="text-greenColor" />
+                </a>
+              </div>
+              <div className="w-10 h-10 rounded-full bg-grayColor flex items-center justify-center">
+                <a href="https://github.com/AntoBbk9">
+                  <FaGithub className="text-greenColor" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <img
+              src="_MG_5503.JPG.jpg"
+              alt=""
+              className="mt-8 md:mt-0 md:w-[28rem] rounded-lg"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <hr className="border-grayColor w-full " />
+        <div className="py-6 my-16 w-full md:w-[80%] mx-auto px-4">
+          <h1 className="font-sans font-bold text-3xl mb-6">Projets Réalisés</h1>
+            <div className="pt-10">
+                {projets.slice(0, 1).map((projet: any) => (
+                  <Projets
+                    key={projet.id}
+                    image={projet.image}
+                    titre={projet.titre}
+                    description={projet.description}
+                    annee={projet.annee}
+                    role={projet.role}
+                    lienDuSite={projet.lienDuSite}
+                    demoUrl={projet.demoUrl}
+                  />
+                ))}
+            </div>
+              <div className="mt-10 flex justify-end">
+                <Link href="/projects" className="underline text-greenColor">Voir plus</Link>
+              </div>
+        </div>
+        <hr className="border-grayColor w-full" />
+        <div className="flex flex-col sm:flex-row justify-between my-16 px-6 sm:px-0 sm:w-[80%] mx-auto">
+          <h1 className="font-sans font-bold text-3xl">A propos de Moi</h1>
+          <div className="pt-6 sm:px-0 sm:w-[40rem]">
+            <h2>
+              Développeuse full-stack et web designer, j'ai un diplôme en
+              pedagogie generale.
+            </h2>
+            <p className="font-paragraph font-extralight text-xs leading-loose pt-2">
+              {" "}
+              Je suis développeuse full-stack et web designer, à la recherche
+              d'opportunités enrichissantes. Je me concentre sur la création de
+              solutions web accessibles et intuitives. Passionnée par la
+              résolution de problèmes, j'explore actuellement ReactJS, Node.js et
+              Figma. En dehors du code, j’aime explorer la musique, le design et
+              découvrir de nouvelles technologies pour enrichir mes compétences.
+            </p>
+            <div className="pb-8">
+              <a href="/about" className="text-greenColor">
+                En savoir plus sur moi
+              </a>
+              <hr className="border-greenColor w-40" />
+            </div>
+          </div>
+        </div>
+        <hr className="border-grayColor w-full" />
+        <div className="w-full" ref={contactRef}>
+          <ContactForm />
+        </div>
+      </div>
     </div>
+
   );
 }
+
+export default Home;
