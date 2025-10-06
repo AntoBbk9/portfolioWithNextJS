@@ -62,20 +62,30 @@ export const projects = [
     description:
       "Plateforme d'enregistrement de nouveau né à l'État Civil du Congo. Le projet consiste à mettre en place un système d'enregistrement de nouveau né pour permettre aux citoyens de s'inscrire à l'État Civil du Congo et un systeme de notification des citoyens.",
     annee: "2024",
-    role: "Développeuse Web",
+    role: "Designer",
     lienDuSite: "https://www.figma.com/design/ipfv94viUwB05y1GGK9QiI/Untitled?node-id=0-1&t=8avFsrLGxF9B7cwc-1",
     type: "design",
   },
    {
-    id: 6,
-    image: "/brcivil.png",
-    titre: "Projet chef d'oeuvre / BR Civil",
+    id: 7,
+    image: "/kapita.png",
+    titre: "Kapita Production",
     description:
-      "Plateforme d'enregistrement de nouveau né à l'État Civil du Congo. Le projet consiste à mettre en place un système d'enregistrement de nouveau né pour permettre aux citoyens de s'inscrire à l'État Civil du Congo et un systeme de notification des citoyens.",
+      "Plateforme d'enregistrement de vente de vin et jus fais a base d'ananas. Le projet consiste à mettre en place un système qui permet au client d'acheter des vins et jus fais a base d'ananas.",
+    annee: "2024",
+    role: "Designer",
+    lienDuSite: "https://www.figma.com/design/NRKjhtArqpMrJpj6Ps1mvh/Untitled?node-id=187-17&t=Rc1RSteKBWfELYR6-1",
+    type: "design",
+  },
+  {
+    id: 8,
+    image: "/kapita.png",
+    titre: "Kapita Production",
+    description:
+      "Plateforme d'enregistrement de vente de vin et jus fais a base d'ananas. Le projet consiste à mettre en place un système qui permet au client d'acheter des vins et jus fais a base d'ananas.",
     annee: "2024",
     role: "Développeuse Web",
-    lienDuSite: "https://www.figma.com/design/ipfv94viUwB05y1GGK9QiI/Untitled?node-id=0-1&t=8avFsrLGxF9B7cwc-1",
-    demoUrl: "https://github.com/AntoBbk9/projet-chefd-ouvre.git",
-    type: "design",
+    lienDuSite: "https://kapita-production.vercel.app/",
+    type: "developpement",
   },
 ];

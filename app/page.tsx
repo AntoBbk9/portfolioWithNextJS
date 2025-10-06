@@ -1,7 +1,7 @@
 "use client";
 
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Button from "@/components/buttons/button";
@@ -9,16 +9,22 @@ import ContactForm from "@/components/contactForm";
 import Projets from "@/components/projets";
 import axios from "axios";
 
-async function getProjects() {
-  const res = await axios.get("http://localhost:3000/api/projects");
-  const data = res.data;
-  return data.filter((p: any) => p.type === "developpement");
-}
-async function Home() {
+function Home() {
+  const [projets, setProjets] = useState<any[]>([]);
   const contactRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-    const projets = await getProjects();
-
+    
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        const res = await axios.get("http://localhost:3000/api/projects");
+        setProjets(res.data.filter((p: any) => p.type === "developpement"));
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    fetchProjects();
+  }, []);
   const scrollToContact = () => {
     if (contactRef.current) {
       contactRef.current.scrollIntoView({ behavior: "smooth" });
