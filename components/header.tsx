@@ -3,68 +3,60 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { FiMenu, FiX } from "react-icons/fi";
+import { useLanguage } from "@/components/language-provider";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-
+  const { language, setLanguage } = useLanguage();
+  const isEnglish = language === "en";
   const links = [
-    { name: "Accueil", href: "/" },
-    { name: "À propos", href: "/about" },
-    { name: "Projets", href: "/projects" },
+    { name: isEnglish ? "Home" : "Accueil", href: "/" },
+    { name: isEnglish ? "About" : "À propos", href: "/about" },
+    { name: isEnglish ? "Projects" : "Projets", href: "/projects" },
   ];
 
-  const isActive = (href: string) => pathname === href;
+  const navLinks = (mobile = false) => links.map((link) => (
+    <Link
+      key={link.href}
+      href={link.href}
+      aria-current={pathname === link.href ? "page" : undefined}
+      onClick={() => mobile && setIsOpen(false)}
+    >
+      {link.name}
+    </Link>
+  ));
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-black z-50">
-      <div className="flex justify-between p-4 w-full md:w-[80%] m-auto relative">
-        <Link href="/">
-          <h1 className="font-sans text-[16px] font-bold">ANTOINETTE BELEBELE</h1>
+    <header className="site-header">
+      <div className="site-header-inner">
+        <Link href="/" className="brand" aria-label={isEnglish ? "Antoinette Belebele, home" : "Antoinette Belebele, accueil"}>
+          <span className="brand-name">ANTOINETTE BELEBELE</span>
+          <span className="brand-note">{isEnglish ? "Web developer · Portfolio" : "Développeuse web · Portfolio"}</span>
         </Link>
-
-        {/* Menu Desktop */}
-        <nav className="hidden md:flex gap-10">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={
-                isActive(link.href)
-                  ? "font-menu font-light text-black bg-[#BFDE42] px-5 py-2 rounded-xl"
-                  : "font-menu font-light"
-              }
-            >
-              {link.name}
-            </Link>
-          ))}
+        <nav className="site-nav" aria-label={isEnglish ? "Main navigation" : "Navigation principale"}>
+          {navLinks()}
         </nav>
-
-        {/* Bouton Hamburger (mobile) */}
-        <div className="md:hidden">
-          <button className="text-2xl" onClick={() => setIsOpen(!isOpen)}>
-            <RxHamburgerMenu />
+        <div className="header-actions">
+          <div className="language-toggle" role="group" aria-label={isEnglish ? "Choose language" : "Choisir la langue"}>
+            <button type="button" aria-pressed={language === "fr"} onClick={() => setLanguage("fr")}>FR</button>
+            <button type="button" aria-pressed={language === "en"} onClick={() => setLanguage("en")}>EN</button>
+          </div>
+          <button
+            type="button"
+            className="mobile-menu-button"
+            aria-label={isOpen ? (isEnglish ? "Close menu" : "Fermer le menu") : (isEnglish ? "Open menu" : "Ouvrir le menu")}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => setIsOpen((open) => !open)}
+          >
+            {isOpen ? <FiX aria-hidden="true" /> : <FiMenu aria-hidden="true" />}
           </button>
         </div>
-
-        {/* Menu Mobile (pop-up) */}
         {isOpen && (
-          <nav className="absolute top-14 right-4 bg-white text-black shadow-lg rounded-xl p-4 flex flex-col gap-4 md:hidden z-50">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className={
-                  isActive(link.href)
-                    ? "font-menu font-light text-black bg-[#BFDE42] px-5 py-2 rounded-xl"
-                    : "font-menu font-light"
-                }
-              >
-                {link.name}
-              </Link>
-            ))}
+          <nav id="mobile-navigation" className="mobile-nav" aria-label={isEnglish ? "Mobile navigation" : "Navigation mobile"}>
+            {navLinks(true)}
           </nav>
         )}
       </div>

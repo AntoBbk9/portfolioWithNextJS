@@ -1,73 +1,54 @@
-"use client"; 
+"use client";
 
-import { FaGithub } from "react-icons/fa";
-import { MdOutlineArrowOutward } from "react-icons/md";
+import { FiArrowUpRight, FiGithub } from "react-icons/fi";
+import type { Language } from "@/components/language-provider";
 
 export interface ProjetProps {
-    image: string;
-    titre: string;
-    description: string;
-    annee: string;
-    role: string;
-    lienDuSite: string;
-    demoUrl?: string;
+  image: string;
+  titre: string;
+  description: string;
+  annee: string;
+  role: string;
+  lienDuSite: string;
+  demoUrl?: string;
+  number?: string;
+  language?: Language;
 }
-function Projets({ image, titre, description, annee, role, lienDuSite, demoUrl } : ProjetProps) {
+
+export default function Projets({ image, titre, description, annee, role, lienDuSite, demoUrl, number = "01", language = "fr" }: ProjetProps) {
+  const isEnglish = language === "en";
+
   return (
-    <div className="flex flex-col md:flex-row justify-between md:items-center px-4 md:p-0">
-        <h1 className="md:hidden font-paragraph text-xl mb-2">{titre}</h1>
-        <div className="bg-grayColor md:w-[28rem] xl:w-[37rem] md:h-[28rem] xl:h-[37rem] flex justify-center items-center rounded-xl">
-            {image ? (
-            <img src={image} alt="Projet" className="md:w-[24rem] xl:w-[30rem] md:h-[18rem] xl:h-[21rem] rounded-xl" />
-            ) : (
-            <div className="bg-gray-200 w-full h-64 flex items-center justify-center">
-                <span className="text-black">Aucune image disponible</span>
-            </div>
-            )}
+    <article className="project-card">
+      <a className="project-visual" href={lienDuSite} target="_blank" rel="noopener noreferrer" aria-label={`${isEnglish ? 'Open' : 'Ouvrir'} ${titre}`}>
+        {image ? (
+          <img src={image} alt={`${isEnglish ? 'Preview of' : 'Aperçu du projet'} ${titre}`} loading="lazy" />
+        ) : (
+          <div className="project-visual-empty">{isEnglish ? 'Preview coming soon' : 'Aperçu bientôt disponible'}</div>
+        )}
+        <span className="visual-index">{number} <span>— {annee}</span></span>
+        <span className="visual-action" aria-hidden="true"><FiArrowUpRight /></span>
+      </a>
+      <div className="project-details">
+        <div className="project-title-row">
+          <div>
+            <p className="project-kicker">{isEnglish ? 'Digital product' : 'Produit numérique'} <span>·</span> {role}</p>
+            <h3>{titre}</h3>
+          </div>
+          <span className="project-year">{annee}</span>
         </div>
-        <div className="md:w-[30rem] xl:w-[30rem]">
-            <h1 className="hidden md:block font-paragraph text-xl">{titre}</h1>
-            <p className="font-paragraph font-extralight text-xs leading-loose pt-6">{description}</p>
-
-            <h3 className="pt-6 pb-4 font-light text-xs">INFO PROJET</h3>
-            <hr className="border-grayColor" />
-            <div className="flex justify-between py-4">
-                <p className="font-paragraph font-extralight text-xs">Année</p>
-                <p className="font-paragraph font-extralight text-xs">{annee}</p>
-            </div>
-            <hr className="border-grayColor"/>
-            <div className="flex justify-between py-4">
-                <p className="font-paragraph font-extralight text-xs">Rôle</p>
-                <p className="font-paragraph font-extralight text-xs">{role}</p>
-            </div>
-            <hr className="border-grayColor"/>
-            <div className="flex gap-6 pt-6">
-            <div className=" text-greenColor">
-                <a href={lienDuSite} className="flex gap gap-1 items-center">
-                    <span>Lien du site</span>
-                    <MdOutlineArrowOutward className="inline"/>
-                </a>
-                <hr className="border-greenColor"/>
-            </div>
-
-            {demoUrl && (
-            <div className="text-greenColor">
-              <a
-                href={demoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1"
-              >
-                <span>Voir sur GitHub</span>
-                <FaGithub className="inline" />
-              </a>
-              <hr className="border-greenColor mt-1" />
-            </div>
+        <p className="project-description">{description}</p>
+        <div className="project-links">
+          <a href={lienDuSite} target="_blank" rel="noopener noreferrer" className="project-link-primary">
+            {isEnglish ? 'Visit live project' : 'Voir le projet'} <FiArrowUpRight aria-hidden="true" />
+          </a>
+          {demoUrl && (
+            <a href={demoUrl} target="_blank" rel="noopener noreferrer" className="project-link-secondary">
+              <FiGithub aria-hidden="true" /> {isEnglish ? 'Source code' : 'Code source'}
+            </a>
           )}
-            </div>
         </div>
-    </div>
-  )
+      </div>
+    </article>
+  );
 }
-
-export default Projets

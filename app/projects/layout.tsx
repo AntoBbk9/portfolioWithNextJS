@@ -1,36 +1,35 @@
-"use client"
+"use client";
 
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { usePathname } from "next/navigation";
+import { useLanguage } from "@/components/language-provider";
 
-export default function ProjectsLayout({ children }: { children: React.ReactNode }) {
+export default function ProjectsLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const { language } = useLanguage();
+  const isEnglish = language === "en";
+  const tabs = [
+    { href: "/projects/projects-development", label: isEnglish ? "Web development" : "Développement web", index: "01" },
+    { href: "/projects/projects-design", label: isEnglish ? "Web design" : "Web design", index: "02" },
+  ];
 
   return (
-    <div className="md:w-[80%] mx-auto px-4 md:p-0">
-      {/* Onglets */}
-      <div className="flex gap-3 items-center mb-6">
-        <Link 
-          href="/projects/projects-development"
-          className={`font-paragraph font-extralight text-xs pb-1 ${
-            pathname === "/projects/projects-development" ? "border-b border-greenColor text-greenColor" : ""
-          }`}
-        >
-          Projets de Développement Web
-        </Link>
-        |
-        <Link 
-          href="/projects/projects-design"
-          className={`font-paragraph font-extralight text-xs pb-1 ${
-            pathname === "/projects/projects-design" ? "border-b border-greenColor text-greenColor" : ""
-          }`}
-        >
-          Projets de Web Design
-        </Link>
-      </div>
-
-      {/* Contenu dynamique */}
-      <div>{children}</div>
+    <div className="projects-shell">
+      <nav className="project-tabs" aria-label={isEnglish ? "Project categories" : "Catégories de projets"}>
+        {tabs.map((tab) => (
+          <Link
+            key={tab.href}
+            href={tab.href}
+            className="project-tab"
+            aria-current={pathname === tab.href ? "page" : undefined}
+          >
+            <span className="project-tab-index">{tab.index}</span>
+            <span>{tab.label}</span>
+          </Link>
+        ))}
+      </nav>
+      {children}
     </div>
   );
 }
