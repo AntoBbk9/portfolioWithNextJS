@@ -11,7 +11,7 @@ export default function ProjectsLayout({ children }: { children: ReactNode }) {
   const isEnglish = language === "en";
   const tabs = [
     { href: "/projects/projects-development", label: isEnglish ? "Web development" : "Développement web", index: "01" },
-    { href: "/projects/projects-design", label: isEnglish ? "Web design" : "Web design", index: "02" },
+    { href: "/projects/projects-design", label: isEnglish ? "Product design" : "Design produit", index: "02" },
   ];
 
   return (

@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Antoinette Belebele — Développeuse web",
-  description: "Découvrez les projets web et les expériences numériques créés par Antoinette Belebele.",
+  description: "Portfolio d’Antoinette Belebele, développeuse full-stack et web designer. Découvrez ses projets web et ses expériences numériques.",
 };
 
 export default function RootLayout({
@@ -29,7 +29,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <LanguageProvider>
           <Header />
-          <div className="pt-16">{children}</div>
+          <div className="pt-[76px]">{children}</div>
         </LanguageProvider>
       </body>
     </html>

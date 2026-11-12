@@ -1,141 +1,84 @@
-import ContactForm from "@/components/contactForm";
+"use client";
+
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { FiDownload } from "react-icons/fi";
+import ContactForm from "@/components/contactForm";
+import { useLanguage } from "@/components/language-provider";
 
-const technologies = [
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "NodeJS",
-  "ReactJS",
-  "NextJS",
-  "NodeJS",
-  "Figma",
-  "Git",
-  "GitHub",
-  "Bootstrap",
-  "TailwindCSS",
-];
+const technologies = ["HTML", "CSS", "JavaScript", "Node.js", "React", "Next.js", "Figma", "Git", "GitHub", "Bootstrap", "Tailwind CSS"];
 
-function About() {
+export default function About() {
+  const { language } = useLanguage();
+  const isEnglish = language === "en";
+
   return (
-    <div className="my-0 md:my-16">
-      <div className="w-full md:w-[80%] flex flex-col md:flex-row justify-between px-4 mx-auto md:p-0">
-        <h1 className="font-sans font-bold text-3xl mb-3 md:mb-0">A propos de Moi</h1>
-        <div className="md:w-[45rem]">
-          <h2>
-            Développeuse full-stack et web designer, j'ai un diplôme en
-            pedagogie generale.
-          </h2>
-          <p className="font-paragraph font-extralight text-xs leading-loose pt-2">
-            {" "}
-            Je suis développeuse full-stack et web designer, à la recherche
-            d'opportunités enrichissantes. Je me concentre sur la création de
-            solutions web accessibles et intuitives. Passionnée par la
-            résolution de problèmes, j'explore actuellement ReactJS, Node.js et
-            Figma. En dehors du code, j’aime explorer la musique, le design et
-            découvrir de nouvelles technologies pour enrichir mes compétences.
+    <main id="main-content" className="about-page">
+      <section className="about-intro" aria-labelledby="about-title">
+        <div>
+          <p className="section-kicker">{isEnglish ? "The person behind the work" : "Derrière les projets"}</p>
+          <h1 id="about-title">{isEnglish ? "About me" : "À propos de moi"}</h1>
+        </div>
+        <div className="about-intro-copy">
+          <h2>{isEnglish ? "Full-stack developer and web designer with a background in general education." : "Développeuse full-stack et web designer, diplômée en pédagogie générale."}</h2>
+          <p>
+            {isEnglish
+              ? "I’m looking for meaningful opportunities to build accessible, intuitive web products. I enjoy solving problems, learning new technologies and shaping ideas into useful experiences. Outside of code, I’m inspired by music, design and the people I work with."
+              : "Je recherche des opportunités enrichissantes pour créer des produits web accessibles et intuitifs. J’aime résoudre des problèmes, apprendre de nouvelles technologies et transformer des idées en expériences utiles. En dehors du code, la musique, le design et les rencontres nourrissent ma curiosité."}
           </p>
-          <div className="flex gap-4 pt-6">
-            <a
-              href="/CV_Antho_Belebele.pdf"
-              download="Antoinette_Belebele_CV.pdf"
-              className="px-4 py-2 bg-greenColor text-black rounded-full"
-            >
-              Télécharger mon CV
-            </a>{" "}
-            <div className="w-10 h-10 rounded-full bg-grayColor flex items-center justify-center">
-              <a href="https://www.linkedin.com/in/antoinette-belebele-443943260/">
-                <FaLinkedinIn className="text-greenColor" />
-              </a>
-            </div>
-            <div className="w-10 h-10 rounded-full bg-grayColor flex items-center justify-center">
-              <a href="https://github.com/AntoBbk9">
-                <FaGithub className="text-greenColor" />
-              </a>
-            </div>
+          <div className="home-actions">
+            <a className="brand-button" href="/CV_Antho_Belebele.pdf" download="Antoinette_Belebele_CV.pdf">
+              {isEnglish ? "Download my CV" : "Télécharger mon CV"} <FiDownload aria-hidden="true" />
+            </a>
+            <a className="social-link" href="https://www.linkedin.com/in/antoinette-belebele-443943260/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedinIn aria-hidden="true" /></a>
+            <a className="social-link" href="https://github.com/AntoBbk9" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><FaGithub aria-hidden="true" /></a>
           </div>
         </div>
+      </section>
+
+      <div className="about-photo-grid" aria-label={isEnglish ? "Selected photos" : "Quelques photos"}>
+        <img src="/img2.jpg" alt="" />
+        <img src="/img.jpg" alt="" />
+        <img src="/img3.jpg" alt="" />
       </div>
-      <div className="md:w-[80%] mx-auto px-4 md:p-0 my-16">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          <img
-            src="img2.jpg"
-            alt=""
-            className="rounded-lg transition-transform duration-300 hover:scale-105 hover:shadow-lg"
-          />
-          <img
-            src="img.jpg"
-            alt=""
-            className="rounded-lg transition-transform duration-300 hover:scale-105 hover:shadow-lg"
-          />
-          <img
-            src="img3.jpg"
-            alt=""
-            className="rounded-lg transition-transform duration-300 hover:scale-105 hover:shadow-lg"
-          />
+
+      <section className="about-section" aria-labelledby="skills-title">
+        <div>
+          <p className="section-kicker">{isEnglish ? "What I work with" : "Mes outils"}</p>
+          <h2 id="skills-title">{isEnglish ? "Skills & tools" : "Compétences"}</h2>
         </div>
-      </div>
-      <div className="md:w-[80%] mx-auto flex flex-col md:flex-row justify-between my-16 px-4 md:p-0">
-        <h1 className="font-sans font-bold text-3xl mb-3 md:mb-0">Mes Capacités</h1>
-        <div className="md:w-[45rem]">
-          <p className="">
-            Je suis toujours à la recherche de nouvelles compétences à
-            développer pour enrichir mon expertise en développement web et
-            design. Passionnée par l'innovation, j'explore continuellement de
-            nouvelles technologies et méthodologies afin de proposer des
-            solutions modernes, performantes et adaptées aux besoins des
-            utilisateurs.
+        <div>
+          <p className="about-section-copy">
+            {isEnglish
+              ? "I keep developing my skills in web development and design, exploring tools and methods that help me make modern, reliable and user-focused products."
+              : "Je développe continuellement mes compétences en développement web et en design, en explorant les outils et méthodes qui permettent de créer des produits modernes, fiables et centrés sur les utilisateurs."}
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
-            {technologies.map((tech, index) => (
-              <div
-                key={index}
-                className="text-white border border-grayColor px-4 py-2 rounded-full text-center font-semibold"
-              >
-                {tech}
-              </div>
-            ))}
+          <div className="skill-list">
+            {technologies.map((technology) => <span key={technology} className="skill-chip">{technology}</span>)}
           </div>
         </div>
-      </div>
-      <hr className="border-grayColor w-full " />
-      <div className="md:w-[80%] mx-auto flex flex-col md:flex-row justify-between my-16 px-4 md:p-0">
-        <h1 className="font-sans font-bold text-3xl mb-3 md:mb-0">Mes experiences</h1>
-        <div className="md:w-[45rem]">
-          <div>
-            <div className="flex justify-between mb-5">
-              <h2>Developpeuse Front-End</h2>
-              <p>Jan 2025 - Sep 2025</p>
-            </div>
-            <p className="text-greenColor mb-5">BML Business Center</p>
-            <ul className="list-disc mb-3">
-              <li>
-                Développement et amélioration d'interfaces utilisateur
-                interactives et réactives avec ReactJS, HTML, CSS et
-                TailwindCSS.
-              </li>
-              <li>
-                Optimisation du code pour améliorer la performance et
-                l'accessibilité des applications web.
-              </li>
-              <li>
-                Collaboration avec l'équipe backend pour assurer la bonne
-                communication entre le frontend et l'API.
-              </li>
-              <li>
-                Participation aux révisions de code et aux réunions techniques,
-                en appliquant les bonnes pratiques du développement web.
-              </li>
-            </ul>
-          </div>
+      </section>
+
+      <section className="about-section" aria-labelledby="experience-title">
+        <div>
+          <p className="section-kicker">{isEnglish ? "Experience" : "Parcours"}</p>
+          <h2 id="experience-title">{isEnglish ? "Where I’ve contributed" : "Mes expériences"}</h2>
         </div>
-      </div>
-      <hr className="border-grayColor w-full " />
-      <div>
+        <div>
+          <div className="experience-title">
+            <h3>{isEnglish ? "Front-End Developer" : "Développeuse Front-End"}</h3>
+            <span>Jan 2025 – Sep 2025</span>
+          </div>
+          <p className="experience-company">BML Business Center</p>
+          <ul className="experience-list">
+            <li>{isEnglish ? "Built and improved interactive, responsive interfaces using React, HTML, CSS and Tailwind CSS." : "Développement et amélioration d’interfaces interactives et réactives avec React, HTML, CSS et Tailwind CSS."}</li>
+            <li>{isEnglish ? "Improved performance and accessibility across web applications." : "Optimisation des performances et de l’accessibilité des applications web."}</li>
+            <li>{isEnglish ? "Worked with the backend team to integrate frontend features with the API." : "Collaboration avec l’équipe backend pour intégrer les fonctionnalités frontend à l’API."}</li>
+            <li>{isEnglish ? "Contributed to code reviews and technical discussions using web development best practices." : "Participation aux revues de code et aux échanges techniques dans le respect des bonnes pratiques."}</li>
+          </ul>
+        </div>
+      </section>
+
       <ContactForm />
-      </div>
-    </div>
+    </main>
   );
 }
-
-export default About;
