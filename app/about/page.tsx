@@ -39,6 +39,9 @@ export default function About() {
         <img src="/img2.jpg" alt="" />
         <img src="/img.jpg" alt="" />
         <img src="/img3.jpg" alt="" />
+        <img src="/img4.jpg" alt="" />
+        <img src="/img5.jpg" alt="" />
+
       </div>
 
       <section className="about-section" aria-labelledby="skills-title">

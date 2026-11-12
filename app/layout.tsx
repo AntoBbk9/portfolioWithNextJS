@@ -24,14 +24,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="fr">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <LanguageProvider>
-          <Header />
-          <div className="pt-[76px]">{children}</div>
-        </LanguageProvider>
-      </body>
-    </html>
-  );
+ return (
+  <html lang="fr">
+    <body
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
+      <LanguageProvider>
+        <Header />
+        <div className="pt-[76px]">{children}</div>
+      </LanguageProvider>
+    </body>
+  </html>
+);
 }

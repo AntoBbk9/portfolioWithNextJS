@@ -1,6 +1,28 @@
 export const projects = [
   {
     id: 1,
+    image: "/bml-ERP.png",
+    titre: "BML ERP / Gestion des ressources humaines",
+    description:
+      "BML ERP est une application de gestion des ressources humaines qui centralise les processus administratifs liés au personnel. Elle permet de publier et gérer les offres d'emploi, suivre les candidatures et les recrutements, gérer les dossiers des employés, suivre les présences et les absences, ainsi que gérer les rémunérations et les paiements du personnel.",
+    annee: "2025 - 2026",
+    role: "Développeuse Frontend",
+    lienDuSite: "https://kind-stone-052a0680f.5.azurestaticapps.net/login",
+    type: "developpement",
+  },
+  {
+    id: 2,
+    image: "/lumus-health.png",
+    titre: "LUMUS HEALTH / Gestion hospitalière",
+    description:
+      "LUMUS HEALTH est une application de gestion hospitalière conçue pour faciliter l'administration et le suivi des activités médicales. Elle permet de gérer les patients, les chambres d'hospitalisation, les services pharmaceutiques, les ressources hospitalières, le personnel, les services et les contacts d'urgence. Son interface intuitive simplifie l'accès aux informations et améliore le suivi des opérations hospitalières.",
+    annee: "2026",
+    role: "Développeuse Frontend",
+    lienDuSite: "https://testnet.bmlhms.com/client/admin/dashboard",
+    type: "developpement",
+  },
+  {
+    id: 3,
     image: "/teacher.png",
     titre: "StudyBoard / Portail Teacher",
     description:
@@ -11,7 +33,7 @@ export const projects = [
     type: "developpement",
   },
   {
-    id: 2,
+    id: 4,
     image: "/student.png",
     titre: "StudyBoard / Portail Student",
     description:
@@ -22,7 +44,7 @@ export const projects = [
     type: "developpement",
   },
   {
-    id: 3,
+    id: 5,
     image: "/parent.png",
     titre: "StudyBoard / Portail Parent",
     description:
@@ -33,7 +55,7 @@ export const projects = [
     type: "developpement",
   },
   {
-    id: 4,
+    id: 6,
     image: "/mrhe.png",
     titre: "MRHE / Ministère de la Ressource Hydraulique et de l'Électricité",
     description:
@@ -44,7 +66,7 @@ export const projects = [
     type: "developpement",
   },
    {
-    id: 5,
+    id: 7,
     image: "/brcivil.png",
     titre: "Projet chef d'oeuvre / BR Civil",
     description:
@@ -56,7 +78,7 @@ export const projects = [
     type: "developpement",
   },
    {
-    id: 6,
+    id: 8,
     image: "/brcivil.png",
     titre: "Projet chef d'oeuvre / BR Civil",
     description:
@@ -67,7 +89,7 @@ export const projects = [
     type: "design",
   },
    {
-    id: 7,
+    id: 9,
     image: "/kapita.png",
     titre: "Kapita Production",
     description:
@@ -78,7 +100,7 @@ export const projects = [
     type: "design",
   },
   {
-    id: 8,
+    id: 10,
     image: "/kapita.png",
     titre: "Kapita Production",
     description:
