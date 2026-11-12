@@ -60,7 +60,7 @@ export default function ContactForm() {
           </p>
           <p>
             {isEnglish ? "You can also view my " : "Vous pouvez aussi consulter mon "}
-            <a href="/CV_Antho_Belebele.pdf" download="Antoinette_Belebele_CV.pdf" className="text-link">{isEnglish ? "CV" : "CV"}</a>.
+            <a href={isEnglish ? "/CV_Antho_Belebele_EN.pdf" : "/CV_Antho_Belebele_FR.pdf"} download={isEnglish ? "Antoinette_Belebele_CV_EN.pdf" : "Antoinette_Belebele_CV_FR.pdf"} className="text-link">{isEnglish ? "English CV" : "CV français"}</a>.
           </p>
           <div className="contact-socials">
             <a className="social-link" href="https://www.linkedin.com/in/antoinette-belebele-443943260/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedinIn aria-hidden="true" /></a>

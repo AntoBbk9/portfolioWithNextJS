@@ -26,7 +26,7 @@ export default function About() {
               : "Je recherche des opportunités enrichissantes pour créer des produits web accessibles et intuitifs. J’aime résoudre des problèmes, apprendre de nouvelles technologies et transformer des idées en expériences utiles. En dehors du code, la musique, le design et les rencontres nourrissent ma curiosité."}
           </p>
           <div className="home-actions">
-            <a className="brand-button" href="/CV_Antho_Belebele.pdf" download="Antoinette_Belebele_CV.pdf">
+            <a className="brand-button" href={isEnglish ? "/CV_Antho_Belebele_EN.pdf" : "/CV_Antho_Belebele_FR.pdf"} download={isEnglish ? "Antoinette_Belebele_CV_EN.pdf" : "Antoinette_Belebele_CV_FR.pdf"}>
               {isEnglish ? "Download my CV" : "Télécharger mon CV"} <FiDownload aria-hidden="true" />
             </a>
             <a className="social-link" href="https://www.linkedin.com/in/antoinette-belebele-443943260/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedinIn aria-hidden="true" /></a>
