@@ -85,8 +85,8 @@ export default function Home() {
         <div>
           <p>
             {isEnglish
-              ? "I’m a full-stack developer and web designer with a background in general education. I enjoy turning complex needs into accessible, intuitive web products, and I’m always learning with React, Node.js and Figma."
-              : "Développeuse full-stack et web designer, diplômée en pédagogie générale, j’aime transformer des besoins complexes en produits web accessibles et intuitifs. J’explore continuellement React, Node.js et Figma."}
+              ? "I’m a full-stack developer and web designer with a background in Computer Science and Management. I enjoy turning complex needs into accessible, intuitive web products, and I’m always learning with React, Node.js and Figma."
+              : "Développeuse full-stack et web designer, diplômée en Informatique de Gestion, j’aime transformer des besoins complexes en produits web accessibles et intuitifs. J’explore continuellement React, Node.js et Figma."}
           </p>
           <Link href="/about" className="text-link" style={{ marginTop: 20 }}>
             {isEnglish ? "More about me" : "En savoir plus"} <FiArrowUpRight aria-hidden="true" />
